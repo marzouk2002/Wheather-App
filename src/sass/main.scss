@@ -1,0 +1,230 @@
+@import 'config';
+
+.sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-image: linear-gradient(to right, rgb(255, 167, 35), rgb(255, 97, 35));
+    background-size:cover;
+    color: $clr-light;
+    min-height: 100vh;
+} 
+
+.current {
+    background: rgba(0, 0, 0, .7);
+    margin: auto;
+    padding: 2rem;
+    max-width: 1000px;
+    
+    &_input {
+        grid-column: 1/-1;
+        & > input {
+            width: 80%;
+            background-color: white;
+            border: none;
+        }
+    }
+
+    &_city {
+        grid-column: 1/4;
+        grid-row: 2/3;
+
+        &__desc {
+            font-size: $fs-h2;
+            color: $clr-gray;
+            font-weight: $fw-light;
+            margin: 0;
+        }
+    }
+
+    &_sunrise {
+        grid-area: 3/1/4/2;
+        padding: 0 2em;
+    }
+    &_sunset {
+        grid-area: 4/1/5/2;
+        padding: 0 2em;
+    }
+
+    &_temp,
+    &_presip {
+        grid-column: 2/3;
+        padding: 0 2em;
+        @include border-right-left;
+    }
+
+    &_wind {
+        grid-column: 3/4;
+        grid-row: 3/4;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: min-content, 1fr;
+        align-self: start;
+
+        .wind {
+            &__direction {
+                $size : 6rem;
+                width: $size;
+                height: $size;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                display: grid;
+                place-items: center;
+                grid-row: 1/ span 2;
+            }
+
+            &__arrow {
+                --direction:0deg;
+                $size: 1rem;
+                width: $size;
+                height: $size*3;
+                background-color: $clr-accent-dark;
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                transform-origin: bottom center;
+                transform: translateY(-50%)  rotate(var(--direction));
+            }
+        }
+    }
+
+    &_unit {
+        grid-column: 3/4;
+        place-self: end;
+        color: $clr-light;
+        display: flex;
+        align-items: center;
+        opacity: .6;
+        transition: opacity 300ms linear;
+
+        &:hover {
+            opacity: 1;
+        }
+        
+        label {
+            cursor: pointer;
+        }
+
+        input {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 13px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 13px;
+        }
+
+        .unit__toggle {
+            cursor: pointer;
+            border: 2px solid $clr-light;
+            background-color: transparent;
+            width: 4em;
+            border-radius: 100vmax;
+            padding: 0;
+            margin: 0 .5rem;
+            outline: none;
+
+            &::after {
+                content: '';
+                display: block;
+                height: 1rem;
+                margin: 2px;
+                margin-left: auto;
+                width: 1rem;
+                background-color: $clr-light;
+                border-radius: 50%;
+            }
+        }
+
+        :checked ~ .unit__toggle::after {
+            margin-left: 2px;
+        }
+    }
+}
+
+.reading {
+    font-size: $fs-h1;
+    color: $clr-gray;
+    margin: 0;
+}
+
+@media (min-width: 900px ) {
+
+    body {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .current {
+        margin: 4rem 0 0 4rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .current {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(7, 1fr);
+
+        &_input {
+            display: flex;
+            align-items: center;
+        }
+
+        &_sunrise {
+            grid-row: 3/4;
+            @include border-right-left;
+        }
+
+        &_sunset {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            @include border-right-left;
+        }
+
+        &_temp {
+            grid-row: 5/6;
+            grid-column: 1/2;
+        }
+
+        &_presip {
+            grid-row: 6/7;
+            grid-column: 1/2;
+        }
+
+        &_wind {
+            grid-row: 7/8;
+            grid-column: 1/2;
+            @include border-right-left;
+
+            h2,p {
+                padding-left: 2rem;
+            }
+            .wind__direction {
+                grid-row: 1/ span 3;
+                grid-column: 2/3;
+            }
+        }
+
+        &_unit {
+            grid-row: 8/9;
+            grid-column: 1/2;
+            place-self: center;
+            justify-content: center;
+            padding-top: 1rem;
+        }
+    }
+}

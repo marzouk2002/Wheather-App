@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta and title -->
+    <meta charset="UTF-8">
+    <title>weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" rel="stylesheet">
+
+    <!-- Script -->
+    <script defer="" src="/main.fb6bbcaf.js"></script>
+<link rel="stylesheet" href="/main.fb6bbcaf.css"></head>
+
+<body>
+    <main class="current">
+        <form class="current_input" data-form="">
+            <input class="main-title" placeholder="Search for any city" data-input="">
+        </form>
+        <div class="current_city">
+            <h2 class="section-title section-title--date" data-current-city="">
+            </h2>
+            <p class="current_date__disc" data-current-desc=""></p>
+        </div>
+
+        <div class="current_sunrise">
+            <h3 class="section-title">Sunrise</h3>
+            <p class="reading" data-sunrise=""></p>
+        </div>
+
+        <div class="current_sunset">
+            <h3 class="section-title">Sunset</h3>
+            <p class="reading" data-sunset=""></p>
+        </div>
+
+        <div class="current_temp">
+            <h2 class="section-title">Temperature</h2>
+            <p class="reading">
+                <span data-current-temp="">78</span>
+                °<span data-unit-temp=""></span>
+            </p>
+        </div>
+        <div class="current_presip">
+            <h2 class="section-title">Precipitation</h2>
+            <p class="reading">
+                <span data-current-pres="">78</span>mm/hr
+            </p>
+        </div>
+
+        <div class="current_wind">
+            <h2 class="section-title">Wind</h2>
+            <p class="reading">
+                <span data-current-wind-speed="">75 </span>
+                <span data-unit-speed=""></span>
+            </p>
+            <div class="wind__direction">
+                <p class="sr-only" data-wind-direction-text=""></p>
+                <div class="wind__arrow" data-wind-direction-arrow=""></div>
+            </div>
+        </div>
+
+        <div class="current_unit">
+            <label for="cel">°C</label>
+            <input type="radio" id="cel" name="unit" checked="">
+            <button class="unit__toggle" data-unit-toggle=""></button>
+            <label for="fah">°F</label>
+            <input type="radio" id="fah" name="unit">
+        </div>
+
+    </main>
+
+</body>
+
+</html>
